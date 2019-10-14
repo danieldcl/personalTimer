@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-title>{{workout.name}}</ion-title>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="home" text=""></ion-back-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+      <ion-button color="primary" routerLink="/workouts/{{workout.id}}">
+        <ion-icon slot="icon-only" name="play"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item-group>     
+      <ion-item *ngFor="let ex of workout.exercises; index as i"> 
+        <ion-label>{{ex.name}}
+      </ion-label>
+      <ion-label>{{ex.duration}}</ion-label>
+            <ion-buttons>
+              <ion-button (click)="removeExercise(i)">
+                <ion-icon slot="icon-only" name="remove-circle" lazy="false" color="warning"></ion-icon>
+              </ion-button>
+              <ion-button routerLink="/edit-exercise/{{id}}/{{i}}">
+                <ion-icon slot="icon-only" name="build" lazy="false"></ion-icon>
+              </ion-button>
+            </ion-buttons>
+      </ion-item>
+    </ion-item-group>
+
+</ion-content>

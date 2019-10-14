@@ -1,0 +1,59 @@
+<ion-header>
+    <ion-toolbar>
+    <ion-title>
+      Workout
+    </ion-title>
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="home" text=""></ion-back-button>
+      </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button color="success" routerLink="/home">
+        <ion-icon slot="icon-only" name="checkmark-circle-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+      <ion-label>{{workout.exercises[currentExercise].name}}</ion-label>
+      <span>{{workout.exercises[currentExercise].duration}}</span>
+  </ion-item>
+    <div class="timerBox">
+      <circle-progress
+      [percent]="percent"
+      [maxPercent]="100"
+      [radius]="radius"
+      [showTitle]="false"
+      [showSubtitle]="false"
+      [showUnits]="false"
+      [outerStrokeWidth]="16"
+      [innerStrokeWidth]="5"
+      [outerStrokeColor]="'#78C000'"
+      [innerStrokeColor]="'#C7E596'"
+      [animation]="false"
+      [animationDuration]="300"
+      >
+      
+    </circle-progress>
+    <ng-container *ngIf="timer===false; else runningBlock">
+      <ion-fab vertical="center" horizontal="center" slot="fixed">
+          <ion-fab-button (click)="startTimer()">
+            <ion-icon name="play"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+
+      
+  </ng-container>
+  <ng-template #runningBlock>
+      <ion-fab vertical="center" horizontal="center" slot="fixed">
+          <ion-fab-button (click)="stopTimer()" color="dark">
+            <ion-icon name="square"></ion-icon>
+          </ion-fab-button>
+        </ion-fab>
+  </ng-template>
+    
+    </div>
+<p class="elapsedTime">{{elapsed.h}}:{{elapsed.m}}:{{elapsed.s}}</p>
+  
+</ion-content>

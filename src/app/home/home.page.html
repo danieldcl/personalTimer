@@ -1,14 +1,43 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+    <ion-toolbar>
+      <ion-title>Workouts</ion-title>
+      <ion-buttons slot="start">
+        <ion-button routerLink="/new-workout">
+            <ion-icon slot="icon-only" name="add" lazy="false"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+<ion-content class="ion-padding">
 
-<ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+  <ion-list>
+    <ion-item *ngFor="let workout of workouts; index as i">
+        <ion-label routerLink="/detail/{{workout.id}}">
+          <h2 class="workoutNameLabel">{{workout.name}}</h2>
+        </ion-label>
+        
+      <ion-buttons>
+        <ion-button (click)="removeWorkout(i)">
+          <ion-icon slot="icon-only" name="close" lazy="false" color="danger"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+    </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-item *ngFor="let ring of tones; index as i">
+        <ion-label >
+          <h2>{{ring.Name}}</h2>
+          {{ring.Url}}
+        </ion-label>
+        
+      <ion-buttons>
+        <ion-button (click)="playRingtone(ring.Url)">
+          <ion-icon slot="icon-only" name="close" lazy="false" color="primary"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+
+    </ion-item>
+  </ion-list>
+
 </ion-content>

@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{newExerciseName}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home" text=""></ion-back-button>
+      </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button color="primary" (click)="updateExercise()">
+          <ion-icon slot="icon-only" name="checkmark-circle-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-item-group>
+    <ion-item-divider>Update</ion-item-divider>
+    <ion-item class="ion-padding" >
+      <ion-label position="stacked">Name: </ion-label>
+      <ion-input maxlength="100" [(ngModel)]="newExerciseName"></ion-input>
+    </ion-item>
+    
+    <ion-item class="ion-padding" >
+      <ion-label>duration:</ion-label>
+      <ion-datetime displayFormat="mm:ss" [(ngModel)]="newTime"></ion-datetime>
+    </ion-item>
+  </ion-item-group>
+
+</ion-content>

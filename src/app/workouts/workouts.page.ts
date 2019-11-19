@@ -56,36 +56,39 @@ export class WorkoutsPage implements OnInit, OnDestroy {
     const minute = timesplit[1];
     const second = timesplit[2];
     const total = Math.floor(minute * 60) + parseInt(second, 10);
-    this.tts.speak({text: this.workout.exercises[this.currentExercise].name, locale: 'en-GB', rate: 1.5});
-    this.timer = setInterval(() => {
-      if (this.pause) {
-        return;
-      }
-      if (this.percent === this.radius) {
-        clearInterval(this.timer);
-        this.progress = 0;
-        this.percent = 0;
-        if (this.currentExercise + 1 < this.workout.exercises.length) {
-          this.currentExercise++;
-          this.fullTime = this.workout.exercises[this.currentExercise].duration;
-          this.startTimer();
-        } else {
-          this.stopTimer();
-          this.tts.speak({
-            text: 'Well Done!',
-            locale: 'en-GB',
-            rate: 1.5
-          });
-          return;
-        }
-      }
-      this.percent = Math.floor(this.progress / total * 100);
-      this.progress++;
-      if (!this.overallTimer) {
-        this.progressTimer();
-        this.insomnia.keepAwake();
-      }
-    }, 1000);
+    this.tts.speak(
+      {text: this.workout.exercises[this.currentExercise].name, locale: 'en-GB', rate: 1.5}
+      ).then(() => {
+        this.timer = setInterval(() => {
+          if (this.pause) {
+            return;
+          }
+          if (this.percent === this.radius) {
+            clearInterval(this.timer);
+            this.progress = 0;
+            this.percent = 0;
+            if (this.currentExercise + 1 < this.workout.exercises.length) {
+              this.currentExercise++;
+              this.fullTime = this.workout.exercises[this.currentExercise].duration;
+              this.startTimer();
+            } else {
+              this.stopTimer();
+              this.tts.speak({
+                text: 'Well Done!',
+                locale: 'en-GB',
+                rate: 1.5
+              });
+              return;
+            }
+          }
+          this.percent = Math.floor(this.progress / total * 100);
+          this.progress++;
+          if (!this.overallTimer) {
+            this.progressTimer();
+            this.insomnia.keepAwake();
+          }
+        }, 1000);
+    });
   }
 
   progressTimer() {

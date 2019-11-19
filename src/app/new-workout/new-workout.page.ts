@@ -13,6 +13,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class NewWorkoutPage {
   newTime: any = "00:00:05";
+  restTime: any = "00:00:15";
+  autoRest: false;
   workoutName: string;
   newExerciseName: string;
   workout: Workout;
@@ -32,16 +34,32 @@ export class NewWorkoutPage {
   }
 
   addNewWorkout(){
+    this.insertRest();
     this.workout = {
       name: this.workoutName,
       exercises: this.exercises,
-      id: 10
-    }
+      id: this.workoutSerivce.genId()
+    };
     this.workoutSerivce.addWorkout(this.workout);
     this.location.back();
   }
 
-  removeExercise(id){
+  insertRest() {
+    if (this.autoRest) {
+      let l = this.exercises.length - 1;
+      while (l > 0) {
+        const rest = {
+          name: 'Rest',
+          duration: this.restTime,
+          id: this.workoutSerivce.genId()
+        };
+        this.exercises.splice(l, 0, rest);
+        l -= 1;
+      }
+    }
+  }
+
+  removeExercise(id) {
     this.exercises.splice(id, 1);
   }
 }

@@ -39,22 +39,29 @@
       </ion-item>
       
     </ion-item-group>
+      <ion-item-divider>Add New:</ion-item-divider>
+      <ion-item>
+        <ion-label position="stacked">Name: </ion-label>
+        <ion-input maxlength="100" placeholder="Enter name" [(ngModel)]="newExerciseName"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>duration:</ion-label>
+        <ion-datetime displayFormat="mm:ss" placeholder="Enter Time" [(ngModel)]="newTime"></ion-datetime>
+      </ion-item>
 
-    <ion-item-divider>Add New:</ion-item-divider>
-
-    <ion-item>
-      <ion-label position="stacked">Name: </ion-label>
-      <ion-input maxlength="100" placeholder="Enter name" [(ngModel)]="newExerciseName"></ion-input>
-    </ion-item>
-    
-    <ion-item>
-      <ion-label>duration:</ion-label>
-      <ion-datetime displayFormat="mm:ss" placeholder="Enter Time" [(ngModel)]="newTime"></ion-datetime>
-    </ion-item>
-    <ion-item>
-      <ion-label></ion-label>
-      <ion-button expand="block" (click)="addExercise()">Add</ion-button>
-    </ion-item>
+      <ion-item>
+        <ion-label>Insert Rest in between All exercises</ion-label>
+        <ion-checkbox color="dark" [(ngModel)]="autoRest" slot="start"></ion-checkbox>
+        
+        <ion-datetime displayFormat="mm:ss" placeholder="Enter Time" [(ngModel)]="restTime"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label></ion-label>
+        <ion-button expand="block" (click)="addExercise()">Add</ion-button>
+      </ion-item>
   </ion-item-group>
+
+
 
 </ion-content>

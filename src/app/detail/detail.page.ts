@@ -42,6 +42,7 @@ export class DetailPage implements OnInit {
   }
 
   saveWorkout() {
+    this.insertRest();
     this.workoutSerivce.updateWorkouts().then(
       t => {
         this.saved = t;

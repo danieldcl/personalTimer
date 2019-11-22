@@ -9,56 +9,55 @@ import { Storage } from '@ionic/storage';
 })
 export class WorkoutsService implements OnInit{
   storageKey: string = "personalHIITWorkouts"
-  workouts:Workout[] = [];
+  workouts: Workout[] = [];
   constructor(private storage:Storage){} 
   
   ngOnInit(){
     this.storage.get(this.storageKey).then( v => {
-      if (v!==null){
+      if (v !== null) {
         this.workouts = v;
-      }
-      else {
+      } else {
         this.storage.set(this.storageKey, []);
       }
     });
   }
-  getWorkouts(){
+  getWorkouts() {
     return this.workouts;
   }
 
-  getWorkout(id){
+  getWorkout(id) {
     return this.workouts.filter((r)=>r.id===id);
   }
 
-  addWorkout(workout){
+  addWorkout(workout) {
     this.workouts.push(workout);
     this.updateWorkouts();
   }
 
-  removeWorkout(idx){
+  removeWorkout(idx) {
     this.workouts.splice(idx, 1);
     this.updateWorkouts();
   }
 
-  removeExercise(id, idx){
+  removeExercise(id, idx) {
     const workout = this.workouts.filter( h => h.id===id);
-    if (workout.length>0){
+    if (workout.length > 0) {
       const index = this.workouts.indexOf(workout[0]);
       this.workouts[index].exercises.splice(idx, 1);
       this.updateWorkouts();
     }
   }
 
-  getExercise(id, idx):Exercise{
+  getExercise(id, idx): Exercise{
     const workout = this.workouts.filter( h => h.id===id);
-    if (workout.length>0){
+    if (workout.length > 0) {
       return workout[0].exercises[idx];
     }
   }
 
-  updateExercise(id, idx, exercise){
-    const workout = this.workouts.filter( h => h.id===id);
-    if (workout.length>0){
+  updateExercise(id, idx, exercise) {
+    const workout = this.workouts.filter( h => h.id === id);
+    if (workout.length > 0) {
       const index = this.workouts.indexOf(workout[0]);
       this.workouts[index].exercises[idx] = exercise;
       this.updateWorkouts();
@@ -69,8 +68,19 @@ export class WorkoutsService implements OnInit{
     return this.workouts.length > 0 ? Math.max(...this.workouts.map(hero => hero.id)) + 1 : 11;
   }
 
-  updateWorkouts(){
-    this.storage.set(this.storageKey, this.workouts);
+  genExId(): number {
+    return this.workouts.reduce( (count, workout) => count + workout.exercises.length, 1) + 1;
+  }
+
+  updateWorkouts() {
+    return this.storage.set(this.storageKey, this.workouts).then(
+      () => {
+        return true;
+      }
+    ).catch((e) => {
+      console.log(e);
+      return false;
+    });
   }
 
 }

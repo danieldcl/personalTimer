@@ -1,8 +1,8 @@
 <ion-header>
     <ion-toolbar>
-      <ion-title>Workouts</ion-title>
+      <ion-title>Routines</ion-title>
       <ion-buttons slot="start">
-        <ion-button routerLink="/new-workout">
+        <ion-button (click)="addNewWorkout()">
             <ion-icon slot="icon-only" name="add" lazy="false"></ion-icon>
         </ion-button>
       </ion-buttons>
@@ -19,21 +19,6 @@
       <ion-buttons>
         <ion-button (click)="removeWorkout(i)">
           <ion-icon slot="icon-only" name="close" lazy="false" color="danger"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-
-    </ion-item>
-  </ion-list>
-  <ion-list>
-    <ion-item *ngFor="let ring of tones; index as i">
-        <ion-label >
-          <h2>{{ring.Name}}</h2>
-          {{ring.Url}}
-        </ion-label>
-        
-      <ion-buttons>
-        <ion-button (click)="playRingtone(ring.Url)">
-          <ion-icon slot="icon-only" name="close" lazy="false" color="primary"></ion-icon>
         </ion-button>
       </ion-buttons>
 

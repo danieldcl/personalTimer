@@ -3,7 +3,6 @@ import { Workout } from '../workout';
 import { Exercise } from '../exercise';
 import { WorkoutsService } from '../workouts.service'
 import { Location } from '@angular/common';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -19,9 +18,8 @@ export class NewWorkoutPage {
   newExerciseName: string;
   workout: Workout;
   exercises: Exercise[] = [];
-  public workoutForm: FormGroup;
 
-  constructor(private location: Location, private workoutSerivce:WorkoutsService, public fb: FormBuilder) {
+  constructor(private location: Location, private workoutSerivce:WorkoutsService) {
   }
   
   addExercise(){

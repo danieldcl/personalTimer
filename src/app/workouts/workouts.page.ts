@@ -3,7 +3,6 @@ import { Insomnia } from '@ionic-native/insomnia/ngx';
 import { ActivatedRoute } from '@angular/router';
 import { WorkoutsService } from '../workouts.service';
 import { Workout } from '../workout';
-// import { NativeRingtones } from '@ionic-native/native-ringtones/ngx';
 import { TextToSpeech } from '@ionic-native/text-to-speech/ngx';
 
 

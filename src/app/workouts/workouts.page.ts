@@ -126,7 +126,4 @@ export class WorkoutsPage implements OnInit, OnDestroy {
     this.insomnia.allowSleepAgain();
   }
 
-  ngOnDestroy() {
-
-  }
 }

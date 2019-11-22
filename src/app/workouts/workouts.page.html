@@ -14,7 +14,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="ion-padding" *ngIf="workout.exercises.length">
   <ion-item>
       <ion-label>{{workout.exercises[currentExercise].name}}</ion-label>
       <span>{{workout.exercises[currentExercise].duration}}</span>

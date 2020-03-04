@@ -11,17 +11,16 @@
 <ion-content class="ion-padding">
 
   <ion-list>
-    <ion-item *ngFor="let workout of workouts; index as i">
+    <ion-item *ngFor="let workout of workouts; index as i" id="routine{{i}}">
         <ion-label routerLink="/detail/{{workout.id}}">
           <h2 class="workoutNameLabel">{{workout.name}}</h2>
         </ion-label>
         
-      <ion-buttons>
-        <ion-button (click)="removeWorkout(i)">
-          <ion-icon slot="icon-only" name="close" lazy="false" color="danger"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-
+        <ion-buttons>
+          <ion-button (click)="removeWorkout(i)">
+            <ion-icon slot="icon-only" name="close" lazy="false" color="danger"></ion-icon>
+          </ion-button>
+        </ion-buttons>
     </ion-item>
   </ion-list>
 
